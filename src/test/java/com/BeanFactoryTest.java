@@ -6,6 +6,7 @@ import static org.junit.Assert.*;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.util.Assert;
 
 public class BeanFactoryTest
 {
@@ -14,5 +15,6 @@ public class BeanFactoryTest
 		BeanFactory beanFactory = new XmlBeanFactory(new ClassPathResource("beanFactoryTest.xml"));
 		MyTestBean bean = (MyTestBean) beanFactory.getBean("myTestBean");
 		assertEquals("testStr", bean.getTestStr());
+		Assert.isTrue("testStr".equals(bean.getTestStr()), bean::getTestStr);
 	}
 }
