@@ -1,4 +1,4 @@
-package com.testBean;
+package test.bean;
 
 public class MyTestBean
 {
