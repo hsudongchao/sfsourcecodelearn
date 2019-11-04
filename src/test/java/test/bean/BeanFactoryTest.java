@@ -6,6 +6,7 @@ import static org.junit.Assert.*;
 import org.springframework.beans.factory.BeanCurrentlyInCreationException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.util.Assert;
@@ -36,5 +37,15 @@ public class BeanFactoryTest
 			Throwable throwable = e.getCause().getCause().getCause();
 			throw throwable;
 		}
+	}
+
+	/**
+	 * 实现BeanFactoryAware接口的bean，在被初始化之后，将会被注入BeanFactory的实例。
+	 */
+	@Test
+	public void test_testBeanFactoryAware() {
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("test/bean/beanFactoryTest.xml");
+		TestBeanFactoryAware test = (TestBeanFactoryAware) ctx.getBean("testAware");
+		test.testAware();
 	}
 }
