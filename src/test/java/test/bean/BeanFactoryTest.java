@@ -48,4 +48,17 @@ public class BeanFactoryTest
 		TestBeanFactoryAware test = (TestBeanFactoryAware) ctx.getBean("testAware");
 		test.testAware();
 	}
+
+	/**
+	 * 在Spring DI注入的时候可以把普通属性注入进来，但是像Date类型就无法识别。
+	 * 没有自定义属性注册编辑器时，测试不通过
+	 * 解决 1. 自定义属性注册编辑器：DatePropertyEditor
+	 * 	   2. 使用Spring自带的属性编辑器：CustomDateEditor
+	 */
+	@Test
+	public void test_resourceEditorRegistrar() {
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("test/bean/beanFactoryTest.xml");
+		UserManager userManager = (UserManager) ctx.getBean("userManager");
+		assertNotNull(userManager);
+	}
 }

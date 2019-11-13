@@ -5,4 +5,23 @@
     <bean id="myTestBean" class="test.bean.MyTestBean"></bean>
     <bean id="testAware" class="test.bean.TestBeanFactoryAware"></bean>
     <bean id="hello" class="test.bean.Hello"></bean>
+    <bean id="userManager" class="test.bean.UserManager">
+        <property name="dateValue" value="2019-11-13"/>
+    </bean>
+
+    <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+        <!-- 自定义属性编辑器 -->
+        <!--<property name="customEditors">-->
+            <!--<map>-->
+                <!--<entry key="java.util.Date" value="test.bean.DatePropertyEditor">-->
+                <!--</entry>-->
+            <!--</map>-->
+        <!--</property>-->
+        <!-- 注册Spring自带属性编辑器 -->
+        <property name="propertyEditorRegistrars">
+            <list>
+                <bean class="test.bean.DatePropertyEditorRegistrar"></bean>
+            </list>
+        </property>
+    </bean>
 </beans>
