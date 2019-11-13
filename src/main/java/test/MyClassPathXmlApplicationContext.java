@@ -1,5 +1,6 @@
 package test;
 
+import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -8,6 +9,18 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class MyClassPathXmlApplicationContext extends ClassPathXmlApplicationContext {
     public MyClassPathXmlApplicationContext(String... configLocations) {
         super(configLocations);
+    }
+
+    /**
+     * 自定义是否允许覆盖同名称不同定义的对象及是否允许循环依赖
+     * @param beanFactory
+     */
+    @Override
+    protected void customizeBeanFactory(DefaultListableBeanFactory beanFactory)
+    {
+        super.setAllowBeanDefinitionOverriding(false);
+        super.setAllowCircularReferences(false);
+        super.customizeBeanFactory(beanFactory);
     }
 
     @Override
