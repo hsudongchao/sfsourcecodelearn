@@ -13,4 +13,8 @@ public class MyTestBean
 	{
 		this.testStr = testStr;
 	}
+
+	public void test() {
+		System.out.println("test");
+	}
 }

@@ -35,6 +35,7 @@
    
    c. `prototype`范围的依赖处理。对于`prototype`作用域的`bean`，`Spring`容器无法完成依赖注入，因为`Spring`容器不会缓存`prototype`作用域的`bean`，因此无法提前暴露一个创建中的`bean`。
 6. `Spring`中提供一些`Aware`相关的接口，比如`BeanFactoryAware`、`ApplicationContextAware`、`ResourceLoaderAware`、`ServletContextAware`等，实现这些`Aware`接口的`Bean`在初始化之后，可以取得一些相对应的资源，例如实现`BeanFactoryAware`的`bean`在初始化后，`Spring`容器将会注入`BeanFactory`的实例，而实现`ApplicationContextAware`在被初始化后，将会被注入`ApplicationContext`的实例。
+7. 使用*面向对象编程（`OOP`）* 有一些弊端，当需要为多个不具有继承关系的对象引入同一个公共行为的时候，例如日志、安全检测等，我们只有在每个对象引入公共行为，这样程序中就产生了大量的重复代码，程序就不便于维护了，所以就有了一个面向对象编程的补充，即*面向方面编程（`AOP`）*，`AOP`关注的是横向，不同于`OOP`的纵向。
 
 ### 第二部分 企业应用
 ### 第三部分 Spring Boot
